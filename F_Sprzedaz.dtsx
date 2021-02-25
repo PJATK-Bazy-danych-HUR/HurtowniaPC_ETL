@@ -1,0 +1,2121 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/18/2020 6:47:59 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DESKTOP-LEGION"
+  DTS:CreatorName="DESKTOP-LEGION\adam"
+  DTS:DTSID="{38079DAC-7A02-46A2-9AB9-C305B4D02932}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.7001.0"
+  DTS:LocaleID="1045"
+  DTS:ObjectName="F_Sprzedaz"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{7F29A6FF-4B7A-4221-B1D1-2EE2EA3573A4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FB18A099-D52D-444C-85E1-140753CB620C}"
+      DTS:ObjectName="DESKTOP-LEGION.HurtowniaPC">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-LEGION;Initial Catalog=HurtowniaPC;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC_Source]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{80C2151D-5094-481C-B8D4-5B4C324F7B1B}"
+      DTS:ObjectName="DESKTOP-LEGION.HurtowniaPC_Source">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-LEGION;Initial Catalog=HurtowniaPC_Source;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task - F_Sprzedaz"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3BB53193-337A-432C-99F5-A7AD0F390F7F}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task - F_Sprzedaz"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup - Data"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Data]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Data]) [refTable]
+where [refTable].[IdDaty] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="IdDaty" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Data" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Dzien" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Miesiac" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Kwartal" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Rok" dataType="DT_WSTR" length="4" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Data_IdDaty]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Inputs[Lookup Input].Columns[Data_IdDaty]"
+                      cachedDataType="i4"
+                      cachedName="Data_IdDaty"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Data_IdDaty]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">IdDaty</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[IdDaty]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[IdDaty]"
+                      name="IdDaty"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">IdDaty</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[Data]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[Data]"
+                      name="Data"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Data</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[Dzien]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[Dzien]"
+                      name="Dzien"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Dzien</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[Miesiac]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[Miesiac]"
+                      name="Miesiac"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Miesiac</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[Kwartal]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[Kwartal]"
+                      name="Kwartal"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Kwartal</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[Rok]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output].Columns[Rok]"
+                      name="Rok"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Rok</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup - Klient"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Klient]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Klient]) [refTable]
+where [refTable].[IdKlienta] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="IdKlienta" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Nazwa_firmy" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Adres" dataType="DT_STR" length="300" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Miasto" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Wojewodztwo" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Typ_klienta" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1250"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Klient_IdKlienta]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Inputs[Lookup Input].Columns[Klient_IdKlienta]"
+                      cachedDataType="i4"
+                      cachedName="Klient_IdKlienta"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Klient_IdKlienta]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">IdKlienta</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[Nazwa_firmy]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="200"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[Nazwa_firmy]"
+                      name="Nazwa_firmy"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Nazwa_firmy</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[Adres]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="300"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[Adres]"
+                      name="Adres"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Adres</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[Miasto]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="200"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[Miasto]"
+                      name="Miasto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Miasto</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[Wojewodztwo]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="200"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[Wojewodztwo]"
+                      name="Wojewodztwo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Wojewodztwo</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[Typ_klienta]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[Typ_klienta]"
+                      name="Typ_klienta"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Typ_klienta</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[IdKlienta]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output].Columns[IdKlienta]"
+                      name="IdKlienta"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">IdKlienta</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup - Produkt"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Produkt]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Produkt]) [refTable]
+where [refTable].[IdProduktu] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="IdProduktu" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NumerProducenta" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Nazwa_Produktu" dataType="DT_STR" length="300" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Cena" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Cena_zakupu" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Grupa_produktowa" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Kategoria" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Marka" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Producent" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Opis" dataType="DT_STR" length="500" precision="0" scale="0" codePage="1250"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Produkt_IdProduktu]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Inputs[Lookup Input].Columns[Produkt_IdProduktu]"
+                      cachedDataType="i4"
+                      cachedName="Produkt_IdProduktu"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Produkt_IdProduktu]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">IdProduktu</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[IdProduktu]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[IdProduktu]"
+                      name="IdProduktu"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">IdProduktu</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[NumerProducenta]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[NumerProducenta]"
+                      name="NumerProducenta"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">NumerProducenta</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Nazwa_Produktu]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="300"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Nazwa_Produktu]"
+                      name="Nazwa_Produktu"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Nazwa_Produktu</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Cena]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Cena]"
+                      name="Cena"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Cena</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Cena_zakupu]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Cena_zakupu]"
+                      name="Cena_zakupu"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Cena_zakupu</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Grupa_produktowa]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="200"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Grupa_produktowa]"
+                      name="Grupa_produktowa"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Grupa_produktowa</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Kategoria]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="200"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Kategoria]"
+                      name="Kategoria"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Kategoria</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Marka]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Marka]"
+                      name="Marka"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Marka</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Producent]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="200"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Producent]"
+                      name="Producent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Producent</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Opis]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="500"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output].Columns[Opis]"
+                      name="Opis"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Opis</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup - Promocja"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Promocja]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Promocja]) [refTable]
+where [refTable].[IdPromocji] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="IdPromocji" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Nazwa" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Opis" dataType="DT_STR" length="300" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="DataOd" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DataDo" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Promocja_IdPromocji]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Inputs[Lookup Input].Columns[Promocja_IdPromocji]"
+                      cachedDataType="i4"
+                      cachedName="Promocja_IdPromocji"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Promocja_IdPromocji]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">IdPromocji</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output].Columns[IdPromocji]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output].Columns[IdPromocji]"
+                      name="IdPromocji"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">IdPromocji</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output].Columns[Nazwa]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output].Columns[Nazwa]"
+                      name="Nazwa"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Nazwa</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output].Columns[Opis]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="300"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output].Columns[Opis]"
+                      name="Opis"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Opis</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output].Columns[DataOd]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output].Columns[DataOd]"
+                      name="DataOd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DataOd</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output].Columns[DataDo]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output].Columns[DataDo]"
+                      name="DataDo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DataDo</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup - Region"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Region]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Region]) [refTable]
+where [refTable].[IdRegionu] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="IdRegionu" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Miasto" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1250"/&gt;&lt;referenceColumn name="Wojewodztwo" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1250"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Region_IdRegionu]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Inputs[Lookup Input].Columns[Region_IdRegionu]"
+                      cachedDataType="i4"
+                      cachedName="Region_IdRegionu"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Region_IdRegionu]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">IdRegionu</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Match Output].Columns[IdRegionu]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Match Output].Columns[IdRegionu]"
+                      name="IdRegionu"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">IdRegionu</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Match Output].Columns[Miasto]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="200"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Match Output].Columns[Miasto]"
+                      name="Miasto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Miasto</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Match Output].Columns[Wojewodztwo]"
+                      codePage="1250"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Match Output].Columns[Wojewodztwo]"
+                      name="Wojewodztwo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Wojewodztwo</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination - DWHurtowniaPC"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Sprzedaz]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].Columns[Promocja_IdPromocji]"
+                      cachedDataType="i4"
+                      cachedName="Promocja_IdPromocji"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Promocja_IdPromocji]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Promocja_IdPromocji]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].Columns[Region_IdRegionu]"
+                      cachedDataType="i4"
+                      cachedName="Region_IdRegionu"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Region_IdRegionu]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Region_IdRegionu]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].Columns[Klient_IdKlienta]"
+                      cachedDataType="i4"
+                      cachedName="Klient_IdKlienta"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Klient_IdKlienta]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Klient_IdKlienta]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].Columns[Data_IdDaty]"
+                      cachedDataType="i4"
+                      cachedName="Data_IdDaty"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Data_IdDaty]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Data_IdDaty]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].Columns[Produkt_IdProduktu]"
+                      cachedDataType="i4"
+                      cachedName="Produkt_IdProduktu"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Produkt_IdProduktu]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Produkt_IdProduktu]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].Columns[Liczba_sztuk]"
+                      cachedDataType="i4"
+                      cachedName="Liczba_sztuk"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Liczba_sztuk]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Liczba_sztuk]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].Columns[Kwota]"
+                      cachedDataType="cy"
+                      cachedName="Kwota"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Kwota]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Kwota]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].Columns[Marza_brutto]"
+                      cachedDataType="r4"
+                      cachedName="Marza_brutto"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Marza_brutto]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Marza_brutto]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Promocja_IdPromocji]"
+                      dataType="i4"
+                      name="Promocja_IdPromocji" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Region_IdRegionu]"
+                      dataType="i4"
+                      name="Region_IdRegionu" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Klient_IdKlienta]"
+                      dataType="i4"
+                      name="Klient_IdKlienta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Data_IdDaty]"
+                      dataType="i4"
+                      name="Data_IdDaty" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Produkt_IdProduktu]"
+                      dataType="i4"
+                      name="Produkt_IdProduktu" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Liczba_sztuk]"
+                      dataType="i4"
+                      name="Liczba_sztuk" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Kwota]"
+                      dataType="cy"
+                      name="Kwota" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input].ExternalColumns[Marza_brutto]"
+                      dataType="r4"
+                      name="Marza_brutto" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source - baza transakcyjna"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Sprzedaz]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC_Source]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LEGION.HurtowniaPC_Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Promocja_IdPromocji]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Promocja_IdPromocji]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Promocja_IdPromocji]"
+                      name="Promocja_IdPromocji"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Region_IdRegionu]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Region_IdRegionu]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Region_IdRegionu]"
+                      name="Region_IdRegionu"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Klient_IdKlienta]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Klient_IdKlienta]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Klient_IdKlienta]"
+                      name="Klient_IdKlienta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Data_IdDaty]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Data_IdDaty]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Data_IdDaty]"
+                      name="Data_IdDaty"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Produkt_IdProduktu]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Produkt_IdProduktu]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Produkt_IdProduktu]"
+                      name="Produkt_IdProduktu"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Liczba_sztuk]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Liczba_sztuk]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Liczba_sztuk]"
+                      name="Liczba_sztuk"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Kwota]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Kwota]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Kwota]"
+                      name="Kwota"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Marza_brutto]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Marza_brutto]"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].Columns[Marza_brutto]"
+                      name="Marza_brutto"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Promocja_IdPromocji]"
+                      dataType="i4"
+                      name="Promocja_IdPromocji" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Region_IdRegionu]"
+                      dataType="i4"
+                      name="Region_IdRegionu" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Klient_IdKlienta]"
+                      dataType="i4"
+                      name="Klient_IdKlienta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Data_IdDaty]"
+                      dataType="i4"
+                      name="Data_IdDaty" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Produkt_IdProduktu]"
+                      dataType="i4"
+                      name="Produkt_IdProduktu" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Liczba_sztuk]"
+                      dataType="i4"
+                      name="Liczba_sztuk" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Kwota]"
+                      dataType="cy"
+                      name="Kwota" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output].ExternalColumns[Marza_brutto]"
+                      dataType="r4"
+                      name="Marza_brutto" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Promocja_IdPromocji]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Promocja_IdPromocji]"
+                      name="Promocja_IdPromocji" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Region_IdRegionu]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Region_IdRegionu]"
+                      name="Region_IdRegionu" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Klient_IdKlienta]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Klient_IdKlienta]"
+                      name="Klient_IdKlienta" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Data_IdDaty]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Data_IdDaty]"
+                      name="Data_IdDaty" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Produkt_IdProduktu]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Produkt_IdProduktu]"
+                      name="Produkt_IdProduktu" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Liczba_sztuk]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Liczba_sztuk]"
+                      name="Liczba_sztuk" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Kwota]"
+                      dataType="cy"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Kwota]"
+                      name="Kwota" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Marza_brutto]"
+                      dataType="r4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[Marza_brutto]"
+                      name="Marza_brutto" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task - F_Sprzedaz.Paths[Lookup Match Output]"
+              endId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task - F_Sprzedaz.Paths[Lookup Match Output1]"
+              endId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task - F_Sprzedaz.Paths[Lookup Match Output2]"
+              endId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task - F_Sprzedaz\Lookup - Data.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task - F_Sprzedaz.Paths[Lookup Match Output3]"
+              endId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task - F_Sprzedaz.Paths[Lookup Match Output4]"
+              endId="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task - F_Sprzedaz.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task - F_Sprzedaz\Lookup - Region.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task - czyszczenie tabeli F_Sprzedaz"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{758E4E47-EF88-47E6-9E46-E7BBBFBB3EDA}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task - czyszczenie tabeli F_Sprzedaz"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FB18A099-D52D-444C-85E1-140753CB620C}"
+          SQLTask:SqlStatementSource="Delete from Sprzedaz" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3E6C0F29-52A7-4F43-ACCD-4DA49147A3A8}"
+      DTS:From="Package\Execute SQL Task - czyszczenie tabeli F_Sprzedaz"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task - F_Sprzedaz" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="313,42"
+          Id="Package\Execute SQL Task - czyszczenie tabeli F_Sprzedaz"
+          TopLeft="38,32" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\Data Flow Task - F_Sprzedaz"
+          TopLeft="44,157" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="194.5,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-43,83"
+              Start="0,0"
+              End="-43,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.5"
+                    Point2="0,41.5"
+                    Point3="-4,41.5" />
+                  <mssgle:LineSegment
+                    End="-39,41.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-39,41.5"
+                    Point2="-43,41.5"
+                    Point3="-43,45.5" />
+                  <mssgle:LineSegment
+                    End="-43,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task - F_Sprzedaz">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna"
+          TopLeft="2,0" />
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC"
+          TopLeft="11,534" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Data Flow Task - F_Sprzedaz\Lookup - Region"
+          TopLeft="47,70" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient"
+          TopLeft="43,161" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Data Flow Task - F_Sprzedaz\Lookup - Data"
+          TopLeft="47,252" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt"
+          TopLeft="58,350" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja"
+          TopLeft="74,441" />
+        <EdgeLayout
+          Id="Package\Data Flow Task - F_Sprzedaz.Paths[OLE DB Source Output]"
+          TopLeft="124.75,42">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task - F_Sprzedaz.Paths[Lookup Match Output]"
+          TopLeft="121.5,112">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,14.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task - F_Sprzedaz.Paths[Lookup Match Output1]"
+          TopLeft="119,203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,14.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task - F_Sprzedaz.Paths[Lookup Match Output2]"
+          TopLeft="120,294">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="18,56"
+              Start="0,0"
+              End="18,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="4,28" />
+                  <mssgle:LineSegment
+                    End="14,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14,28"
+                    Point2="18,28"
+                    Point3="18,32" />
+                  <mssgle:LineSegment
+                    End="18,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-39.19138671875,33,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task - F_Sprzedaz.Paths[Lookup Match Output3]"
+          TopLeft="138,392">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5,49"
+              Start="0,0"
+              End="19.5,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="4,24.5" />
+                  <mssgle:LineSegment
+                    End="15.5,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5,24.5"
+                    Point2="19.5,24.5"
+                    Point3="19.5,28.5" />
+                  <mssgle:LineSegment
+                    End="19.5,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-38.44138671875,29.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task - F_Sprzedaz.Paths[Lookup Match Output4]"
+          TopLeft="157.5,483">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-17,51"
+              Start="0,0"
+              End="-17,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5"
+                    Point2="0,25.5"
+                    Point3="-4,25.5" />
+                  <mssgle:LineSegment
+                    End="-13,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13,25.5"
+                    Point2="-17,25.5"
+                    Point3="-17,29.5" />
+                  <mssgle:LineSegment
+                    End="-17,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-56.69138671875,30.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task - F_Sprzedaz\OLE DB Source - baza transakcyjna">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task - F_Sprzedaz\OLE DB Destination - DWHurtowniaPC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task - F_Sprzedaz\Lookup - Region">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Region]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task - F_Sprzedaz\Lookup - Klient">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Klient]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task - F_Sprzedaz\Lookup - Data">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Data]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task - F_Sprzedaz\Lookup - Produkt">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Produkt]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task - F_Sprzedaz\Lookup - Promocja">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Promocja]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
